@@ -1,5 +1,5 @@
 # Proteomics_MES_GD
-Proteomics analysis of IDH-mutant-noncodel gliomas reveals the mesenchymal subgroup enriched of gemistocytes with worse survival
+Pan-omics integration identified IDH mutant mesenchymal glioma as a novel subtype with worse prognosis
 
 ## Ownership
 [Wang Lab at HKUST](http://wang-lab.ust.hk/)
@@ -9,7 +9,7 @@ Proteomics analysis of IDH-mutant-noncodel gliomas reveals the mesenchymal subgr
 Active Development
 
 ## Last update time
-2023-11-29
+2024-04-04
 
 ## Introduction
  **Updating**
