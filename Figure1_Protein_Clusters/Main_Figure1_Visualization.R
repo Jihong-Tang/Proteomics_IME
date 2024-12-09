@@ -185,9 +185,9 @@ OS_cl$Censor <- as.numeric(OS_cl$Censor)
 Pth_color <- c('#33a02c','#e31a1c','#ff7f00','#1f78b4')
 
 custom_theme <- function() {
-  theme_classic() %+replace%
-    theme(
-      text = 	element_text(size = 14, face = 'bold'),
+  theme_classic() %+replace%  # nolint
+    theme(  # nolint
+      text = element_text(size = 14, face = 'bold'), # nolint
       plot.title=element_text(hjust=0.5)
     )
 }
@@ -205,7 +205,7 @@ p <- ggsurvplot(
   palette = Pth_color
 )
 p
-ggsave(paste0("./figures/1211_OS_4groups.pdf"), width = 7.5, height =6, units = 'cm', dpi = 600)
+ggsave(paste0("./figures/Fig1C_OS_4groups.pdf"), width = 7.5, height =6, units = 'cm', dpi = 600)
 
 
 PFS_cl <- ht_cl[, c("PFS_day", "Censor_PFS", "NMF_Cluster")]
@@ -228,4 +228,4 @@ p <- ggsurvplot(
   palette = Pth_color
 )
 p
-ggsave(paste0("./figures/1211_PFS_4groups.pdf"), width = 7.5, height =6, units = 'cm', dpi = 600)
+ggsave(paste0("./figures/Fig1C_PFS_4groups.pdf"), width = 7.5, height =6, units = 'cm', dpi = 600)
