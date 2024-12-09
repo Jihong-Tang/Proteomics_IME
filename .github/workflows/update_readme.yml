@@ -3,7 +3,7 @@ name: Update README
 on:
   push:
     branches:
-      - jihong  # Adjust based on your branch name
+      - origin/jihong  # Adjust based on your branch name
 
 jobs:
   update-readme:
