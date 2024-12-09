@@ -1,4 +1,4 @@
 #!/bin/bash
 
 TIMESTAMP=$(date)
-sed -i '' "s|<LAST_UPDATE>|Last updated: $TIMESTAMP|g" README.md
+sed -i '' "/^Last updated:/s/.*/Last updated: $TIMESTAMP/" README.md
