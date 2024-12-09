@@ -1,0 +1,16 @@
+name: Update README
+
+on:
+  push:
+    branches:
+      - main  # Adjust based on your branch name
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Update README
+        run: bash update_readme.sh
