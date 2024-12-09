@@ -51,3 +51,6 @@ rsconnect/
 
 # data files before accepted
 */data/
+
+# Supp scripts
+*/Supp*

@@ -1,8 +1,11 @@
 #### Visualization codes for Main Figure 1; 2024-04-04
-#### Proteomics subgroups of IDHmut-noncodel gliomas with
-#### divergent survival outcomes
+#### Protein clusters of IDH-mutant astrocytoma with divergent survival outcomes
+#### Author: Jihong TANG; Jiguang WANG
 
-# Fig 1A - NMF and genomics heatmap ----
+# Fig 1A - Schematic workflow for data cohorts ----
+## All the figures were manually created using PowerPoint software.
+
+# Fig 1B - NMF and genomics heatmap ----
 ## 1A-1 heatmap of clinical & pns ----
 pth_cl <- "data/nmf_subtypes_clinical_updated_23Dec03.xlsx"
 pth_ht <- "data/Heatmap_Input_MutA_Unbiased_4Groups_Aug18.rds"
@@ -59,7 +62,7 @@ ht_pn <- Heatmap(as.matrix(ht_input),
                  cluster_rows = F, cluster_columns = F, column_title =' '
                  )                             
 ht_pn                             
-pdf("./figures/1203_Ht_cl&pn.pdf", width = 10, height = 8)
+pdf("./figures/Fig1B_Ht_cl&pn.pdf", width = 10, height = 8)
 draw(ht_pn, heatmap_legend_side = "right", 
      annotation_legend_side = "bottom")
 dev.off()
@@ -164,227 +167,10 @@ ht_CNV
 ht_Genomics_MutA_long <- ht_mut %v%  ht_CNV
 ht_Genomics_MutA_long
 
-pdf("./figures/1203_Ht_genomics.pdf", width = 10, height = 8)
+pdf("./figures/Fig1B_Ht_genomics.pdf", width = 10, height = 8)
 draw(ht_Genomics_MutA_long, heatmap_legend_side = "bottom", 
      annotation_legend_side = "bottom")
 dev.off()
-
-# Fig 1B - Clinical and genomics association ---- 
-## 1B-1 prepare the correlation data ---- 
-library(tidyverse)
-gg_color_hue <- function(n) {
-  hues = seq(15, 375, length = n + 1)
-  hcl(h = hues, l = 65, c = 100)[1:n]
-}
-
-ht_genomics <- ht_genomics[ht_cl$Cohort_ID, ]
-sum(ht_genomics$Cohort_ID == ht_cl$Cohort_ID)
-
-new1 <- ht_cl
-ProteoNMF1<-rep(0,length(new1$Cohort_ID))
-ProteoNMF1[which(new1$NMF_Cluster=="ProteoNMF1")]=1
-ProteoNMF2<-rep(0,length(new1$Cohort_ID))
-ProteoNMF2[which(new1$NMF_Cluster=="ProteoNMF2")]=1
-ProteoNMF3<-rep(0,length(new1$Cohort_ID))
-ProteoNMF3[which(new1$NMF_Cluster=="ProteoNMF3")]=1
-ProteoNMF4<-rep(0,length(new1$Cohort_ID))
-ProteoNMF4[which(new1$NMF_Cluster=="ProteoNMF4")]=1
-
-df_nmf <- data.frame(ProteoNMF1, ProteoNMF2, ProteoNMF3,
-                          ProteoNMF4)
-
-new2 <- ht_cl %>% as.data.frame()
-Cohort.CGPA <- rep(NA, length(new2[, 1]))
-Cohort.CGPA[which(new2$Cohorts == "CGPA")] = 1
-Cohort.CGPA[which(new2$Cohorts != "CGPA")] = 0
-
-Cohort.CPTAC <- rep(NA, length(new2[, 1]))
-Cohort.CPTAC[which(new2$Cohorts == "CPTAC")] = 1
-Cohort.CPTAC[which(new2$Cohorts != "CPTAC")] = 0
-
-Cohort.CRM2022 <- rep(NA, length(new2[, 1]))
-Cohort.CRM2022[which(new2$Cohorts == "CRM2022_Jakob")] = 1
-Cohort.CRM2022[which(new2$Cohorts != "CRM2022_Jakob")] = 0
-
-Grade.II <- rep(NA, length(new2[, 1]))
-Grade.II[which(new2$Grade_2021 == "G2")] = 1
-Grade.II[which(new2$Grade_2021 != "G2")] = 0
-
-Grade.III <- rep(NA, length(new2[, 1]))
-Grade.III[which(new2$Grade_2021 == "G3")] = 1
-Grade.III[which(new2$Grade_2021 != "G3")] = 0
-
-Grade.IV <- rep(NA, length(new2[, 1]))
-Grade.IV[which(new2$Grade_2021 == "G4")] = 1
-Grade.IV[which(new2$Grade_2021 != "G4")] = 0
-
-Male <- rep(NA, length(new2[, 1]))
-Male[which(new2$Gender == "Male")] = 1
-Male[which(new2$Gender != "Male")] = 0
-
-Female <- rep(NA, length(new2[, 1]))
-Female[which(new2$Gender == "Female")] = 1
-Female[which(new2$Gender != "Female")] = 0
-
-Asian <- rep(NA, length(new2[, 1]))
-Asian[which(new2$Race == "Asian")] = 1
-Asian[which(new2$Race != "Asian")] = 0
-
-Caucasian<- rep(NA, length(new2[, 1]))
-Caucasian[which(new2$Race == "Caucasian")] = 1
-Caucasian[which(new2$Race != "Caucasian")] = 0
-
-df_cli <- data.frame(
-  Cohort.CGPA, Cohort.CPTAC, Cohort.CRM2022, Grade.II, Grade.III, Grade.IV, 
-  Male, Female, Asian, Caucasian)
-
-
-new3 <- ht_genomics %>% as.data.frame()
-
-#df_nmf_mut <- ht_genomics[, mut_gene] %>% as.data.frame()
-IDH1 <- rep(NA,length(new3[,1]))
-IDH1[which(new3$IDH1 == "No")] = 0
-IDH1[which(new3$IDH1 != "No" & new3$IDH1 != "NA")] = 1
-
-TP53 <- rep(NA,length(new3[,1]))
-TP53[which(new3$TP53 == "No")] = 0
-TP53[which(new3$TP53 != "No" & new3$TP53 != "NA")] = 1
-
-ATRX <- rep(NA,length(new3[,1]))
-ATRX[which(new3$ATRX == "No")] = 0
-ATRX[which(new3$ATRX != "No" & new3$ATRX != "NA")] = 1
-
-NF1 <- rep(NA,length(new3[,1]))
-NF1[which(new3$NF1 == "No")] = 0
-NF1[which(new3$NF1 != "No" & new3$NF1 != "NA")] = 1
-
-PIK3CA <- rep(NA,length(new3[,1]))
-PIK3CA[which(new3$PIK3CA == "No")] = 0
-PIK3CA[which(new3$PIK3CA != "No" & new3$PIK3CA != "NA")] = 1
-
-PIK3R1 <- rep(NA,length(new3[,1]))
-PIK3R1[which(new3$PIK3R1 == "No")] = 0
-PIK3R1[which(new3$PIK3R1 != "No" & new3$PIK3R1 != "NA")] = 1
-
-
-CDKN2A.Loss <- rep(NA,length(new3[,1]))
-CDKN2A.Loss[which(new3$CDKN2A == "Loss" | new3$CDKN2A == "Del")] = 1
-CDKN2A.Loss[which(new3$CDKN2A == "Neural" | new3$CDKN2A == "Gain" | new3$CDKN2A == "Amp")] = 0
-
-PDGFRA.Gain <- rep(NA,length(new3[,1]))
-PDGFRA.Gain[which(new3$PDGFRA == "Gain" | new3$PDGFRA == "Amp")] = 1
-PDGFRA.Gain[which(new3$PDGFRA == "Neural" | new3$PDGFRA == "Loss" | new3$PDGFRA == "Del")] = 0
-
-CDK4.Gain <- rep(NA,length(new3[,1]))
-CDK4.Gain[which(new3$CDK4 == "Gain" | new3$CDK4 == "Amp")] = 1
-CDK4.Gain[which(new3$CDK4 == "Neural" | new3$CDK4 == "Loss" | new3$CDK4 == "Del")] = 0
-
-CDK6.Gain <- rep(NA,length(new3[,1]))
-CDK6.Gain[which(new3$CDK6 == "Gain" | new3$CDK6 == "Amp")] = 1
-CDK6.Gain[which(new3$CDK6 == "Neural" | new3$CDK6 == "Loss" | new3$CDK6 == "Del")] = 0
-
-CCND2.Gain <- rep(NA,length(new3[,1]))
-CCND2.Gain[which(new3$CCND2 == "Gain" | new3$CCND2 == "Amp")] = 1
-CCND2.Gain[which(new3$CCND2 == "Neural" | new3$CCND2 == "Loss" | new3$CCND2 == "Del")] = 0
-
-MET.Gain <- rep(NA,length(new3[,1]))
-MET.Gain[which(new3$MET == "Gain" | new3$MET == "Amp")] = 1
-MET.Gain[which(new3$MET == "Neural" | new3$MET == "Loss" | new3$MET == "Del")] = 0
-
-MYC.Gain <- rep(NA,length(new3[,1]))
-MYC.Gain[which(new3$MYC == "Gain" | new3$MYC == "Amp")] = 1
-MYC.Gain[which(new3$MYC == "Neural" | new3$MYC == "Loss" | new3$MYC == "Del")] = 0
-
-df_genomics <- data.frame(IDH1, TP53, ATRX, NF1, PIK3CA, PIK3R1, 
-                          CDKN2A.Loss,PDGFRA.Gain, CDK4.Gain, 
-                          CDK6.Gain, CCND2.Gain, MET.Gain, MYC.Gain)
-
-correlation_table_MutA <- cbind(df_nmf, df_cli, df_genomics)
-muGene.P.MutA <- matrix(nrow=nrow(correlation_table_MutA),ncol=ncol(correlation_table_MutA))
-muGene.P.MutA[correlation_table_MutA ==1 | correlation_table_MutA == "Yes"] <- 'Y'
-muGene.P.MutA[correlation_table_MutA == 0 | correlation_table_MutA == 'No'] <- 'N'
-colnames(muGene.P.MutA) <- colnames(correlation_table_MutA)
-
-## 1B-2 calculate correlation between each feature ----
-plot_data_MutA <- data.frame( rep(NA,length(correlation_table_MutA[1,])^2),rep(NA,length(correlation_table_MutA[1,])^2),rep(NA,length(correlation_table_MutA[1,])^2),rep(NA,length(correlation_table_MutA[1,])^2),rep(NA,length(correlation_table_MutA[1,])^2))
-n<-1
-#nfeaA <- 17##length(correlation_table_MutA[1,]) -1
-nfeaA <- length(correlation_table_MutA[1,])-23
-
-nfeaB <- length(correlation_table_MutA[1,])
-for(i in 1:nfeaA){
-  x<-i+1
-  for(j in (nfeaA+1):nfeaB){
-    plot_data_MutA[n,1] <- colnames(correlation_table_MutA)[i]
-    plot_data_MutA[n,2] <- colnames(correlation_table_MutA)[j]
-    
-    Mu.FEtest <- cbind(c(0,0),c(0,0))
-    Mu.FEtest[1,1] <- length(which(muGene.P.MutA[,i] == 'Y' & muGene.P.MutA[,j] == 'Y'))
-    Mu.FEtest[1,2] <- length(which(muGene.P.MutA[,i] == 'Y' & muGene.P.MutA[,j] == 'N'))
-    Mu.FEtest[2,1] <- length(which(muGene.P.MutA[,i] == 'N' & muGene.P.MutA[,j] == 'Y'))
-    Mu.FEtest[2,2] <- length(which(muGene.P.MutA[,i] == 'N' & muGene.P.MutA[,j] == 'N'))
-    coMutation <- (((Mu.FEtest[1,1])*(Mu.FEtest[2,2]))+1) / (((Mu.FEtest[1,2])*(Mu.FEtest[2,1]))+1) ## Odds ratio
-    
-    #fisher exact test
-    pValue <- fisher.test(Mu.FEtest,alternative ="two.sided")$p.value
-    
-    if(pValue < 0.05){
-      plot_data_MutA[n,3] <- -log10(pValue) #for dot size, but if pValue > 0.1 , filling with an instinct number
-      if(coMutation > 1){
-        plot_data_MutA[n,4] <- 'B_red'
-      }
-      else{
-        plot_data_MutA[n,4] <- 'A_green'
-      }
-    }
-    else{
-      plot_data_MutA[n,3] <- 1#for dot size, but if pValue > 0.1 , filling with an instinct number
-      plot_data_MutA[n,4] <- 'C_grey'
-    }
-    plot_data_MutA[n,5] <- log10(coMutation)
-    n<-n+1
-  }
-}
-plot_data_MutA<-plot_data_MutA[which(!(is.na(plot_data_MutA[,1]))),]
-colnames(plot_data_MutA) <- c('FeatureA','FeatureB','dotSize','dotColor',"OR")
-plot_data_MutA$orderID<-c(1:nrow(plot_data_MutA))
-
-## 1B-3 plot co-mutation ----
-library(tidyverse)
-plot_2.data <- plot_data_MutA[which(plot_data_MutA$dotSize > 1),]
-plot_3.data <- plot_data_MutA[which(plot_data_MutA$dotSize == 1),]
-coMu.plot<-ggplot()+theme_classic()
-coMu.plot<-coMu.plot+geom_vline(xintercept = unique(plot_data_MutA$FeatureA), linetype=2,color="grey",size=0.3)
-coMu.plot<-coMu.plot+geom_hline(yintercept = unique(plot_data_MutA$FeatureB), linetype=2,color="grey",size=0.3)
-
-coMu.plot<-coMu.plot+geom_point(data = plot_data_MutA,aes(y=reorder(FeatureB,-orderID),x=reorder(FeatureA,orderID),size=dotSize,fill=OR), shape = 21, color = "white")+ylab(NULL)+xlab(NULL)+ggtitle(NULL)
-coMu.plot
-coMu.plot<-coMu.plot+geom_point(data = plot_2.data,aes(y=reorder(FeatureB,-orderID),x=reorder(FeatureA,orderID),size=dotSize,fill=OR),shape=21)+ylab(NULL)+xlab(NULL)+ggtitle(NULL)
-coMu.plot
-coMu.plot<-coMu.plot+theme(panel.background=element_rect(fill='transparent',color='black'),plot.margin=unit(c(1,4,1,1),'lines'),plot.title=element_text(size=24,vjust=0.5,hjust=0.5,face='bold.italic'),
-                           text=element_text(size=24,vjust=1.4,hjust=0.5,face='bold'),legend.key.width=unit(1,'cm'),legend.key.height=unit(0.5,'cm'),legend.position="bottom",
-                           legend.text=element_text(size=12,face='plain'),axis.text.y=element_text(size=16,vjust=0.5,hjust=1,face='plain',color='black'),legend.title=element_text(size=12,vjust=0.5,hjust=0,face='plain'),
-                           axis.text.x=element_text(size=16,angle=45,vjust=1,hjust=1,face='plain',color='black'),axis.title.x=element_text(size=20,vjust=0,hjust=0.5,face='plain',color='black'),
-                           axis.title.y=element_text(size=20,hjust=0.5,vjust=2,face='plain',color='black'),
-                           strip.text = element_text(size=18,face='bold',vjust=0.5,hjust=0.5),strip.background = element_rect(colour="black", fill=gg_color_hue(3)))
-coMu.plot
-coMu.plot<-coMu.plot+scale_shape_manual(name=NULL,values=c(A_green=15,B_red=17,C_grey=16),
-                                        labels=c(A_green='Mutual exclusion',B_red='Co-occurrence',C_grey='Not significant'),
-                                        guide = guide_legend(override.aes=list(size=4),nrow=4),na.translate = F)
-coMu.plot<-coMu.plot+scale_size(name   = "Fisher's test\n   p-value",  breaks = c(1, 1.3,2 , 4, 6,8),labels = expression(1,0.05,10^-2, 10^-4,10^-6,10^-8) ,guide = guide_legend(nrow=2))
-coMu.plot<-coMu.plot+scale_fill_gradientn(name="        Odds ratio\n(log10 transformed)",colours=c('#276419','#4d9221','#7fbc41','white','#de77ae','#c51b7d','#8e0152'),limits=c(-2.5,2.5),breaks=seq(-2,2,1))
-coMu.plot<-coMu.plot+scale_x_discrete(position = "bottom") 
-coMu.plot
-plotAll<-rbind(ggplotGrob(coMu.plot),size="first")
-plotAll
-ggsave(file="./figures/1203_correlation_cli_genomics_V2.pdf", plot=plotAll,bg = 'white', width = 15, height = 20, units = 'cm', dpi = 600)
-
-coMu.plot.NoL <- coMu.plot+theme(axis.text.x  = element_blank(), 
-                                 axis.text.y  = element_blank(),
-                                 legend.position = "none")
-coMu.plot.NoL
-ggsave(file="./figures/1203_correlation_cli_genomics_noL.pdf", plot=coMu.plot.NoL,bg = 'white', width = 9, height = 10, units = 'cm', dpi = 600)
-
 
 # Fig 1C - Survival analysis ---- 
 ht_cl <- readxl::read_xlsx("data/nmf_subtypes_clinical_updated_23Dec03.xlsx")
