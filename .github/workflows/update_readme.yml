@@ -2,7 +2,7 @@ name: Update README
 on:
   push:
     branches:
-      - jihong  # Adjust this based on your branch name
+      - main  # Adjust this based on your branch name
 
 jobs:
   update-readme:
