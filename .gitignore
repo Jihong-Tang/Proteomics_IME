@@ -49,4 +49,4 @@ po/*~
 rsconnect/
 
 # data files before accepted
-*/data/*
+/*/data/*
