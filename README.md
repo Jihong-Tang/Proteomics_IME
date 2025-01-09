@@ -9,7 +9,7 @@ Protein-based classification reveals an immune-hot subtype in IDH mutant astrocy
 Active Development 
 
 ## Latest update
-Last updated: Thu Dec 12 17:45:12 HKT 2024
+Last updated: Thu Jan  9 11:34:34 HKT 2025
 
 ## Introduction
 This repository contains the code for the multi-omics and spatial single cell investigation of IDH-mutant astrocytoma. We analyzed MS-based Proteomics, bulk DNA sequencing, RNA sequencing, DNA methylation array, whole side imaging and single cell RNA-seq data, as well as 10x Visium HD spatial transcriptomics and CODEX multiplex imaging data. The data were used for protein-based clustering, survival analysis, multi-omics characterization, cell type annotation, and spatial analysis. We also developed an AI-aided multiomics  classifier based on multi-omics features. 
