@@ -1,3 +1,7 @@
+#### Visualization codes for Figure 7
+#### Molecular mechanisms associated with poor prognosis in the IDHm-IME gliomas
+#### Author: Jihong TANG; Jiguang WANG
+
 library(tidyverse)
 library(ggpubr)
 library(preprocessCore)

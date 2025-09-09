@@ -1,4 +1,4 @@
-#### Visualization codes for Main Figure 1; 2024-04-04
+#### Visualization codes for Figure 1
 #### Protein clusters of IDH-mutant astrocytoma with divergent survival outcomes
 #### Author: Jihong TANG; Jiguang WANG
 

@@ -1,5 +1,5 @@
-#### Visualization codes for Main Figure 4; 2024-12-11
-#### Histopathological imaging analysis identified enriched gemistocytic differentiation in the IDHm-IME gliomas
+#### Visualization codes for Figure 4
+#### Histopathological imaging analysis identifies enriched gemistocytic differentiation in the IDHm-IME gliomas
 #### Author: Jihong TANG; Jiguang WANG
 
 # Fig 4A; Fig4C; Fig 4H Histopathology images ---- 

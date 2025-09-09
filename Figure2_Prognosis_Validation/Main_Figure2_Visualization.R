@@ -1,4 +1,4 @@
-#### Visualization codes for Main Figure 2; 2024-12-09
+#### Visualization codes for Figure 2
 #### Integrative analysis of RNA and protein validated the prognostic value of protein clustering in multiple cohorts
 #### Author: Jihong TANG; Jiguang WANG
 

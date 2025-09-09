@@ -1,3 +1,7 @@
+#### Visualization codes for Figure 8
+#### AI-aided multi-omics diagnostic utility for the IDHm-IME gliomas
+#### Author: Jihong TANG; Jiguang WANG
+
 library(tidyverse)
 
 # 

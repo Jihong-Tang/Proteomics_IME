@@ -1,4 +1,4 @@
-#### Visualization codes for Main Figure 5; 2024-12-12
+#### Visualization codes for Figure 5
 #### Spatial dynamics of tumor cell states and lymphocyte infiltration in the IDHm-IME gliomas
 #### Author: Jihong TANG; Jiguang WANG
 

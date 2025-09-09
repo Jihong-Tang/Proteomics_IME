@@ -1,3 +1,7 @@
+#### Visualization codes for Figure 6
+#### Spatial lymphocytes infiltration in the IDHm-IME gliomas
+#### Author: Jihong TANG; Jiguang WANG
+
 # IHC ----
 library(tidyverse)
 library(ggbeeswarm)

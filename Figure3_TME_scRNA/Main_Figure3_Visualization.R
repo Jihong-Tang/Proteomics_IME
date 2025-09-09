@@ -1,5 +1,5 @@
-#### Visualization codes for Main Figure 3; 2024-12-09
-#### Single-cell analysis revealed distinct lymphocyte infiltration and enhanced immune activity in the IDHm-IME gliomas
+#### Visualization codes for Figure 3
+#### Single-cell analysis reveals distinct lymphocyte infiltration and enhanced immune activity in IDHm-IME gliomas
 #### Author: Jihong TANG; Jiguang WANG
 
 # Fig 3A - Major clustering ---- 
