@@ -13,7 +13,7 @@
 library(tidyverse)
 library(Seurat)
 
-load("results/0724_ST_HD_BANKSY02_IniRec_016um.Rdata")
+load("data/0724_ST_HD_BANKSY02_IniRec_016um.Rdata")
 
 Idents(obj_rec_16_BSK02) <- "BANKSY_snn_res.0.2"
 
@@ -52,8 +52,7 @@ ggsave("figures/Fig5B_ini_16um_banksy02_res.0.2.pdf", plot = p, width = 5, heigh
 
 # Fig 5C cell neighbourhood analysis ----
 
-plt_ht_nei <- read_delim("data/Fig5/hd_neighborhood/rec_10_table.txt")
-plt_ht_nei <- read_delim("data/Fig5/hd_spatial/")
+plt_ht_nei <- read_delim("data/Niche_10_table.txt")
 
 pltt <- apply(plt_ht_nei, 2, scale)
 rownames(pltt) <- paste0("Niche", seq(1:nrow(pltt)))
@@ -89,7 +88,7 @@ ht_nei <- Heatmap(as.matrix(pltt),
                   column_gap = unit(2, "mm"))
 ht_nei
 
-pdf("./figures/Fig5C_1130_cell_neighborhood_niches.pdf", width = 6, height = 7)
+pdf("./figures/Fig5C_cell_neighborhood_niches.pdf", width = 6, height = 7)
 draw(ht_nei, heatmap_legend_side = "right", 
      annotation_legend_side = "right")
 dev.off()
