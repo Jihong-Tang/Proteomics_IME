@@ -150,7 +150,7 @@ ggplot(plot) +
     y = "L(r)"
   ) +
   theme_classic() +
-  theme(
+  theme( 
     legend.position = "none",
     legend.key.width = unit(.5, "cm"), legend.key.height = unit(0.5, "cm"),
     legend.text = element_text(size = 12, face = "plain"),
