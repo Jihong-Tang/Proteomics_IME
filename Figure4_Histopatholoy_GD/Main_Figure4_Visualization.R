@@ -2,7 +2,7 @@
 #### Histopathological imaging analysis identifies enriched gemistocytic differentiation in the IDHm-IME gliomas
 #### Author: Jihong TANG; Jiguang WANG
 
-# Fig 4A; Fig4C; Fig 4H Histopathology images ---- 
+# Fig 4A; Fig4F; Fig 4H Histopathology images ---- 
 ## All the histopatholoy images are annotated by licensed pathologist
 
 # Fig 4B Boxplot for fraction comparison ---- 
@@ -54,9 +54,12 @@ ggplot(data, aes(fill=condition, y=value, x=specie)) +
 
 ggsave("figures/Fig4B_TCGA_GD_IMEcompare.pdf", width = 3, height = 4)
 
+# Fig 4C Schematic workflow for GD AI classifier ----
+## All the figures were manually created using PowerPoint software.
+
 # Fig 4D AI model pathologist compare ----
 library(tidyverse)
-df_compare <- readxl::read_xlsx("../Fig_codes/data/Fig4/GEM_Model_Percent_Correlation.xlsx")
+df_compare <- readxl::read_xlsx("./data/GEM_Model_Percent_Correlation.xlsx")
 lm <- lm(df_compare$Model_percent_0408 ~ df_compare$Human_percent, data = df_compare)
 summary(lm)
 
@@ -80,7 +83,7 @@ pcc.test
 
 # Fig 4E Classification AUC plots ---- 
 library(tidyverse)
-res_image <- read_delim("results/1021_LOOCV_image_classifier.txt")
+res_image <- read_delim("./data/1021_LOOCV_image_classifier.txt")
 cutoff <- 0.2
 
 frac_to_prob <- function(frac) {
@@ -107,7 +110,6 @@ gg_color_hue <- function(n) {
 roc.loocv <- roc(res_image$label, res_image$pred)
 
 roc.loocv$auc
-
 
 plt.roc.loocv <- ggroc(roc.loocv, color = "#ff7f00", linetype = 1, size = 1)
 plt.roc.loocv <- plt.roc.loocv + theme_classic() +
