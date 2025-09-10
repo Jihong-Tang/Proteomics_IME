@@ -24,7 +24,6 @@ plt_gns_cgga <- de_gns_cgga[de_gns_cgga$Gene %in% gns,]
 plt_gns_tcga <- de_gns_tcga[de_gns_tcga$Gene %in% gns,]
 plt_all <- rbind(plt_pns, plt_gns_cgga, plt_gns_tcga)
 
-## version 1 ----
 # Transform pvalue to -log10 scale
 df <- plt_all %>%
   mutate(log10_p = -log10(pvalue)) %>% 
@@ -151,8 +150,7 @@ ggplot(plot) +
     y = "L(r)"
   ) +
   theme_classic() +
-  theme( # panel.background=element_rect(fill='transparent',color='white'),
-    # text=element_text(size=24,vjust=1.4,hjust=0.5,face='bold'),
+  theme(
     legend.position = "none",
     legend.key.width = unit(.5, "cm"), legend.key.height = unit(0.5, "cm"),
     legend.text = element_text(size = 12, face = "plain"),
@@ -162,4 +160,4 @@ ggplot(plot) +
     axis.title.x = element_text(size = 20, vjust = 0, hjust = 0.5, face = "plain", color = "black"),
     axis.title.y = element_text(size = 20, hjust = 0.5, vjust = 2, face = "plain", color = "black")
   )
-ggsave("figures/Plasma_mecha/0710_Lcross_Tumor_Plasma.pdf", width = 3.2, height = 3)
+ggsave("figures/Fig7D_Lcross_Tumor_Plasma.pdf", width = 3.2, height = 3)
