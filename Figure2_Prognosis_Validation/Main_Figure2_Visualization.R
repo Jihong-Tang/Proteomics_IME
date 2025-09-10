@@ -225,7 +225,7 @@ nmf_IR_1123 <- readxl::read_xlsx("./data/1124_proteomics_subgroups_IR_compare.xl
 plt_IR <- nmf_IR_1123[, seq(1, 14)]
 
 ht_cl <- plt_IR[, c("Patient_ID", "nmf_subtype_I", "nmf_subtype_R")]
-ht_input <- t(plt_IR[, c(seq(2, 5), seq(9, 12))])
+ht_input <- t(plt_IR[, c(seq(2, 5), seq(8, 11))])
 ht_input <- ht_input[, ht_cl$Patient_ID]
 
 df_wide <- ht_input %>% as.data.frame()
