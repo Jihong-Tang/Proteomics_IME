@@ -33,5 +33,8 @@ To install the dependent R packages, please refer to the manual of each individu
 ## Raw data availability
 Raw sequencing data of the profiled samples have been deposited in the Genome Sequence Archive (GSA, https://ngdc.cncb.ac.cn/gsa) at the National Genomics Data Center, China National Center for Bioinformation / Beiling Institute of Genomics, Chinese Academy of Sciences, under accession numbers: HRA012868, HRA012869, HRA012870 and HRA012903. Mass spectrometry proteomics, phosphoproteomics and DNA methylation data have been deposited in OMIX (https://ngdc.cncb.ac.cn/omix) at the same institute under accession numbers: OMIX011526, OMIX011528 and OMIX011529, respectively. Spatial omics data downloading and visualizations of regions of interest are available at https://wang-lab.hkust.edu.hk/software/STP. Data from TCGA were downloaded from NCI Genomics Data Commons data portal (https://portal.gdc.cancer.gov). Previously published CGGA data have been uploaded to GSA, under BioProject ID: PRJCA001636 and PRJCA001747. All the other data supporting the findings of this study are available from the lead contact upon reasonable request.
 
+## Processed data availability
+Processed level 3 data could be downloaded from https://www.cgga.org.cn/download.jsp under the DataSet ID CCell_4083.  
+
 ## Contact
 For any questions, please contact Professor Jiguang Wang via email: jgwang AT ust DOT hk
